@@ -27,12 +27,17 @@ function App() {
     )
   }
 
+  function addTodo (value) {
+    setTodos (
+      todos.concat([{id: Date.now(), status: false, title: value}])
+    )
+  }
 
   return (
     <Context.Provider value = {{remove: removeTodo}}>
       <div>
         <h1>Список дел на React.js</h1>
-        <AddTodo />
+        <AddTodo onCreate = {addTodo}/>
         {todos.length ? <TodoList listTodo={todos} onToggle={toggleTodo}/> : "Список пуст" }
       </div>
     </Context.Provider>
